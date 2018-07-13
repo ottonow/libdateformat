@@ -16,10 +16,14 @@ This library adds relaxed date time parsing for APIs in Spring Boot 2 using Jack
 
 * 2018-08-08T17:23:59.000Z
 * 2018-08-08T17:23:59Z
-* TBD
+* 2018-08-08T17:23:59+00:00
+* 2018-08-08T17:23:59+0000
+* 2018-08-08T17:23:59+00
+* 2018-08-08T17:23:59
 
 ### Date
 
+* 2018-08-08
 * TBD
 
 ## Usage
