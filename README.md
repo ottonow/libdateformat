@@ -2,6 +2,8 @@
 
 This library adds relaxed date time parsing for APIs in Spring Boot 2 using Jackson. The library is configured automatically, when included.
 
+[![Build Status](https://travis-ci.org/ottonow/relaxed-date-time.svg?branch=master)](https://travis-ci.org/ottonow/relaxed-date-time)
+
 ## Supported types
 
 * Instant
