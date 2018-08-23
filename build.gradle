@@ -1,7 +1,8 @@
 buildscript {
     ext {
-        kotlin_version = '1.2.51'
-        springBootVersion = '2.0.3.RELEASE'
+        kotlin_version = '1.2.61'
+        springBootVersion = '2.0.4.RELEASE'
+        dokka_version = "0.9.17"
     }
 
     repositories {
@@ -10,13 +11,21 @@ buildscript {
 
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "org.jetbrains.dokka:dokka-gradle-plugin:$dokka_version"
     }
 }
 
-group 'de.ottonow'
-version '0.1.0'
+plugins {
+    id "com.github.ben-manes.versions" version "0.20.0"
+}
 
 apply plugin: 'kotlin'
+apply plugin: 'maven-publish'
+apply plugin: 'signing'
+
+group = 'de.ottonow'
+archivesBaseName = 'relaxed-date-time'
+version = '0.1.0'
 
 repositories {
     mavenCentral()
@@ -34,4 +43,67 @@ compileKotlin {
 
 compileTestKotlin {
     kotlinOptions.jvmTarget = "1.8"
+}
+
+task sourcesJar(type: Jar) {
+    from sourceSets.main.allSource
+}
+
+task javadocJar(type: Jar, dependsOn: project.javadoc) {
+    from javadoc.destinationDir
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+
+            artifact sourcesJar {
+                classifier "sources"
+            }
+            artifact javadocJar {
+                classifier "javadoc"
+            }
+
+            pom {
+                name = 'relaxed-date-time'
+                description = 'Relaxed date time parser and converter for Spring Boot 2'
+                url = 'https://github.com/ottonow/relaxed-date-time'
+                licenses {
+                    license {
+                        name = 'Apache License 2.0'
+                        url = 'https://github.com/ottonow/relaxed-date-time/blob/master/LICENSE'
+                    }
+                }
+                scm {
+                    url = 'https://github.com/ottonow/relaxed-date-time'
+                    connection = 'scm:https://github.com/ottonow/relaxed-date-time.git'
+                    developerConnection = 'scm:git://github.com/ottonow/relaxed-date-time.git'
+                }
+                developers {
+                    developer {
+                        id = 'kevcodez'
+                        name = 'Kevin Grüneberg'
+                        email = 'k.grueneberg1994@gmail.com'
+                    }
+                }
+            }
+
+
+        }
+    }
+
+    repositories {
+        maven {
+            url "https://oss.sonatype.org/service/local/staging/deploy/maven2"
+            credentials {
+                username nexusUsername
+                password nexusPassword
+            }
+        }
+    }
+}
+
+signing {
+    sign publishing.publications.mavenJava
 }
