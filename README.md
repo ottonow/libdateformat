@@ -3,6 +3,26 @@
 This library adds relaxed date time parsing for APIs in Spring Boot 2 using Jackson. The library is configured automatically, when included.
 
 [![Build Status](https://travis-ci.org/ottonow/relaxed-date-time.svg?branch=master)](https://travis-ci.org/ottonow/relaxed-date-time)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/de.ottonow/relaxed-date-time/badge.svg)](https://maven-badges.herokuapp.com/maven-central/de.ottonow/relaxed-date-time)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+
+## Installation
+
+Artifacts are published to maven central.
+
+Gradle:
+
+`compile de.ottonow:relaxed-date-time:0.1.0`
+
+Maven:
+
+```xml
+<dependency>
+    <groupId>de.ottonow</groupId>
+    <artifactId>relaxed-date-time</artifactId>
+    <version>0.1.0</version>
+</dependency>
+```
 
 ## Supported types
 
