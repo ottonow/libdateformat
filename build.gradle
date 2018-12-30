@@ -1,7 +1,7 @@
 buildscript {
     ext {
-        kotlin_version = '1.2.61'
-        springBootVersion = '2.0.4.RELEASE'
+        kotlin_version = '1.3.11'
+        springBootVersion = '2.1.1.RELEASE'
         dokka_version = "0.9.17"
     }
 
@@ -33,8 +33,8 @@ repositories {
 
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
-    compile "org.springframework.boot:spring-boot-starter-web:$springBootVersion"
-    compile 'com.fasterxml.jackson.module:jackson-module-kotlin:2.9.6'
+    compileOnly "org.springframework.boot:spring-boot-starter-web:$springBootVersion"
+    compile 'com.fasterxml.jackson.module:jackson-module-kotlin:2.9.8'
 }
 
 compileKotlin {
